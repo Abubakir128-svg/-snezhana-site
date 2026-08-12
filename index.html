@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0d12" />
+  <title>Дело Снежаны — расследование возраста</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="noise"></div>
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Официальное расследование продолжается</div>
+        <h1>ДЕЛО<span>СНЕЖАНЫ.</span></h1>
+        <p class="hero-text">
+          Гражданка Снежана уже продолжительное время утверждает, что она старше меня на целый год.
+          Заявление крайне серьёзное, поэтому потребовалось независимое, абсолютно непредвзятое
+          и совершенно не купленное расследование.
+        </p>
+        <div class="buttons">
+          <button class="btn btn-primary" onclick="goToScan()">Начать расследование</button>
+          <button class="btn btn-secondary" onclick="claimOlder(event)">Я вообще-то старше 😡</button>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-top"><span>CASE №017-SNZ</span><span>CONFIDENTIAL</span></div>
+        <div class="avatar">❄️</div>
+        <h2>Снежана</h2>
+        <div class="case-sub">подозреваемая в сокрытии факта малолетства</div>
+        <div class="status" id="mainStatus">СТАТУС: МАЛОЛЕТОК ПОД НАБЛЮДЕНИЕМ</div>
+        <div class="stats">
+          <div class="stat"><b id="denialCount">0</b><span>попыток доказать взрослость</span></div>
+          <div class="stat"><b id="caseScore">17</b><span>баллов подозрительности</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="scan">
+    <div class="container">
+      <div class="section-label">Этап 01</div>
+      <h2 class="section-title">Передовая проверка возраста.</h2>
+      <p class="section-description">Алгоритм учитывает поведение, количество фраз «я вообще-то старше», уровень отрицания и другие научно выдуманные показатели.</p>
+      <div class="panel">
+        <div class="scan-row"><span>Анализ Снежаны...</span><span id="percentage">0%</span></div>
+        <div class="bar"><div class="bar-inner" id="bar"></div></div>
+        <div class="scan-log" id="scanLog"><div>&gt; система ожидает запуск проверки...</div></div>
+        <button class="btn btn-primary" id="scanButton" onclick="startScan()">ПРОСКАНИРОВАТЬ СНЕЖАНУ</button>
+        <div class="scan-result" id="scanResult">Вероятность того, что перед нами малолеток:<strong>99.97%</strong><div style="color:#8d94a0;margin-top:12px;">Погрешность исследования: мы решили её не учитывать.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-label">Этап 02</div>
+      <h2 class="section-title">Паспортный контроль.</h2>
+      <p class="section-description">Снежане разрешается предоставить данные в свою защиту. Комиссия обещает внимательно их проигнорировать.</p>
+      <div class="panel">
+        <div class="passport-grid">
+          <div class="field"><label>Имя гражданки</label><input id="passportName" value="Снежана" /></div>
+          <div class="field"><label>Аргумент в свою защиту</label><input id="passportArgument" placeholder="Например: «Я старше тебя на год!»" /></div>
+        </div>
+        <div class="buttons"><button class="btn btn-primary" onclick="checkPassport()">ПЕРЕДАТЬ ДОКУМЕНТЫ КОМИССИИ</button></div>
+        <div class="passport-result" id="passportResult"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-label">Этап 03</div>
+      <h2 class="section-title">Собранные доказательства.</h2>
+      <p class="section-description">Нажимай на карточки — внутри каждой спрятано секретное заключение комиссии.</p>
+      <div class="evidence-grid">
+        <article class="evidence" onclick="toggleEvidence(this)"><span class="evidence-num">ДОКАЗАТЕЛЬСТВО №01</span><span class="evidence-emoji">🧐</span><h3>Не верит, что я старше</h3><p>Классическая стадия отрицания. Следствие расценивает поведение как крайне подозрительное.</p><span class="tap-note">нажать</span><div class="evidence-overlay"><div><b>ВЕРДИКТ: ПОДОЗРИТЕЛЬНО</b><br><br>Отрицание обнаружено. +12 баллов малолетства.</div></div></article>
+        <article class="evidence" onclick="toggleEvidence(this)"><span class="evidence-num">ДОКАЗАТЕЛЬСТВО №02</span><span class="evidence-emoji">📄</span><h3>Ссылается на документы</h3><p>Аргумент «но дата рождения...» был рассмотрен и отклонён, потому что мешает нашей версии событий.</p><span class="tap-note">нажать</span><div class="evidence-overlay"><div><b>ДОКУМЕНТЫ: НЕ УБЕДИЛИ</b><br><br>Факты не должны мешать хорошему подколу.</div></div></article>
+        <article class="evidence" onclick="toggleEvidence(this)"><span class="evidence-num">ДОКАЗАТЕЛЬСТВО №03</span><span class="evidence-emoji">👶</span><h3>Слишком активно спорит</h3><p>Настоящие взрослые, согласно нашему исследованию, просто принимают поражение.</p><span class="tap-note">нажать</span><div class="evidence-overlay"><div><b>ОТРИЦАНИЕ: 97%</b><br><br>Система советует перестать спорить. Но мы знаем, что Снежка не перестанет.</div></div></article>
+        <article class="evidence" onclick="toggleEvidence(this)"><span class="evidence-num">ДОКАЗАТЕЛЬСТВО №04</span><span class="evidence-emoji">🚨</span><h3>Год преимущества</h3><p>Да, она действительно старше примерно на год. Следствие также подтверждает: это ничего не меняет.</p><span class="tap-note">нажать</span><div class="evidence-overlay"><div><b>ФАКТ ПРИНЯТ</b><br><br>И тут же отправлен в архив как неудобный.</div></div></article>
+        <article class="evidence" onclick="toggleEvidence(this)"><span class="evidence-num">ДОКАЗАТЕЛЬСТВО №05</span><span class="evidence-emoji">🧠</span><h3>Слишком умная</h3><p>Данный факт противоречил обвинению, поэтому комиссия записала его как аномалию.</p><span class="tap-note">нажать</span><div class="evidence-overlay"><div><b>АНОМАЛИЯ ОБНАРУЖЕНА</b><br><br>Умная малолетка. Редкий экземпляр.</div></div></article>
+        <article class="evidence" onclick="toggleEvidence(this)"><span class="evidence-num">ДОКАЗАТЕЛЬСТВО №06</span><span class="evidence-emoji">❄️</span><h3>Вообще-то она Снежка</h3><p>А это уже неопровержимое доказательство. Мы сами не поняли чего именно, но звучит убедительно.</p><span class="tap-note">нажать</span><div class="evidence-overlay"><div><b>СНЕЖКА: ПОДТВЕРЖДЕНО</b><br><br>Дальнейшие вопросы признаны бессмысленными.</div></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section><div class="container"><div class="section-label">Этап 04</div><h2 class="section-title">Право на защиту.</h2><div class="challenge"><h3>Попробуй нажать на заявление.</h3><p>Теперь кнопка «я взрослая» живёт в отдельной зоне и физически не может перекрыть признание — в том числе на телефоне.</p><div class="escape-zone" id="escapeZone"><button class="btn" id="adultButton">Я взрослая и вообще старше тебя</button></div><div class="truth-zone"><button class="btn" id="minorButton" onclick="acceptTruth()">Ладно, я малолеток 😔</button><span style="color:#777b83;font-size:13px;">эта кнопка теперь в безопасности 😭</span></div><div class="system-message" id="systemMessage"></div></div></div></section>
+
+  <section><div class="container"><div class="section-label">Этап 05</div><h2 class="section-title">Экзамен на взрослость.</h2><p class="section-description">Пять абсолютно серьёзных вопросов. Результат, разумеется, заранее не подстроен.</p><div class="quiz-card"><div class="quiz-progress" id="quizProgress">Вопрос 1 из 5</div><div class="quiz-question" id="quizQuestion"></div><div class="quiz-answers" id="quizAnswers"></div><div class="quiz-result" id="quizResult"></div></div></div></section>
+
+  <section><div class="container"><div class="section-label">Этап 06</div><h2 class="section-title">Генератор обвинений.</h2><p class="section-description">Если старые аргументы закончились, государственная машина быстро придумает новые.</p><div class="generator"><div class="generator-output" id="generatorOutput">Нажми кнопку. Комиссия ещё не придумала, за что тебя обвинить.</div><button class="btn btn-pink" onclick="generateAccusation()">СГЕНЕРИРОВАТЬ</button></div></div></section>
+
+  <section><div class="container"><div class="section-label">Этап 07</div><h2 class="section-title">Поймай Снежку.</h2><p class="section-description">Мини-игра: за 15 секунд поймай как можно больше ❄️. На телефоне просто тапай по снежинкам.</p><div class="game-card"><div class="game-top"><div><b id="snowScore">0</b> поймано</div><span id="snowTimer">15 сек.</span><button class="btn btn-primary" id="gameButton" onclick="startSnowGame()">НАЧАТЬ ИГРУ</button></div><div class="snow-arena" id="snowArena"><div class="game-center" id="gameCenter">Снежки пока спрятались.<br>Нажми «Начать игру».</div></div></div></div></section>
+
+  <section><div class="container"><div class="section-label">Этап 08</div><h2 class="section-title">Ладно. Теперь серьёзная часть.</h2><p class="section-description">Следствие неожиданно обнаружило несколько фактов, которые я вынужден признать даже несмотря на своё невероятное желание тебя подкалывать.</p><div class="compliment-box"><div class="compliment" id="compliment">Снежка, ты подозрительно классный человек.</div><button class="btn btn-primary" onclick="newCompliment()">ПОЛУЧИТЬ ЕЩЁ ОДИН ФАКТ</button><div class="compliment-meter" id="complimentMeter"></div><div class="small-note">* комиссия снимает с себя ответственность за внезапное повышение самооценки</div></div></div></section>
+
+  <section class="verdict"><div class="container"><div class="verdict-card"><div class="stamp">ВИНОВНА</div><h2>ФИНАЛЬНЫЙ<br>ВЕРДИКТ</h2><p>После изучения всех материалов дела комиссия постановила: Снежана официально получает пожизненный статус <b>«малолеток»</b> независимо от даты рождения, документов и любых попыток обжалования.</p><p>Однако также было установлено, что она <b>красивая, умная, интересная, смешная и вообще очень классная Снежка</b>.</p><p>К сожалению для обвинения, вторую часть заключения оспорить не удалось.</p><div class="secret" onclick="openSecret()">не нажимать. секретный материал дела.</div></div></div></section>
+</main>
+<footer>Создано независимой комиссией по вопросам малолетства Снежаны.<br>Результаты обжалованию не подлежат.</footer>
+<div class="modal" id="secretModal"><div class="modal-card"><h3>Секретный материал ❄️</h3><p>Если ты каким-то образом это нашла — ладно, признаю. Я подкалываю тебя потому что с тобой это реально весело. И даже несмотря на весь этот сайт, факт остаётся фактом: ты очень классный человек, Снежка.<br><br>Но малолеток. Это уже не обсуждается.</p><button onclick="closeSecret()">Принять суровую правду</button></div></div>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
